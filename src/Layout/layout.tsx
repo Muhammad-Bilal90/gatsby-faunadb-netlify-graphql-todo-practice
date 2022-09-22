@@ -26,14 +26,17 @@ const Layout: React.FC<Props> =({children}) => {
                             <Nav.Link as={Link} to={"/dashboard"} style={{ color: "white" }}>
                                 Dashboard{" "}
                             </Nav.Link>
-                            <Navbar.Text>
-                                Signed in as:{" "}
-                                <span className="">
-                                    Bilal
-                                </span>
-                            </Navbar.Text>
-
-                        </Nav>
+                        </Nav>    
+                        {user && (
+                            <Nav>
+                                <Navbar.Text>
+                                    Signed in as:{" "}
+                                    <span className="">
+                                        {user && (user.user_metadata?.full_name)}
+                                    </span>
+                                </Navbar.Text>
+                            </Nav>
+                        )}
                 </Navbar.Collapse>
             </Navbar>
             <Container>{children}</Container>

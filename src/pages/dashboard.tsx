@@ -1,17 +1,15 @@
 import React from 'react';
 import Layout from '../Layout/layout';
-import Todos from '../components/todos';
+import TodosArea from '../components/todos';
 import { Router } from "@reach/router";
 
+export default function Dashboard() {
 
-const Dashboard = () => {
     return (
         <Layout>
             <Router>
-                <Todos path="/dashboard" />
+                <TodosArea path="/dashboard" />
             </Router>
         </Layout>
     );
 }
-
-export default Dashboard;

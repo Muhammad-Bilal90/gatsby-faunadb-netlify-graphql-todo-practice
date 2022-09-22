@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: "90vh" }}>
-        <h3 className="w-25">Welcome To Todo App!!!</h3><br />
+        <h3 className="w-25">Welcome To Todo App!!!</h3>
         <Button variant="dark" className="w-25" onClick={() => {identity.open()}}>Get Started</Button>
       </div>
     </Layout>

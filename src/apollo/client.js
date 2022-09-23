@@ -4,12 +4,7 @@ import { setContext } from "apollo-link-context"
 import netlifyIdentity from "netlify-identity-widget"
 
 const httpLink = new HttpLink({
-  uri: "/.netlify/functions/graphql-fauna",
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true,
-  },
+  uri: "/.netlify/functions/graphql",
   fetch,
 })
 

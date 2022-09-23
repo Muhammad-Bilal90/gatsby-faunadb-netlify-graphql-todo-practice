@@ -41,23 +41,23 @@ import gql from 'graphql-tag';
 // `
 
 
-const ADD_TODO = gql`
-  mutation addTodo($value: String!) {
-    addTodo(value: $value) {
-      id
-    }
-  }
-`
+// const ADD_TODO = gql`
+//   mutation addTodo($value: String!) {
+//     addTodo(value: $value) {
+//       id
+//     }
+//   }
+// `
 
-const GET_TODOS = gql`
-  query GetTodos {
-    todos {
-      id
-      value
-      done
-    }
-  }
-`
+// const GET_TODOS = gql`
+//   query GetTodos {
+//     todos {
+//       id
+//       value
+//       done
+//     }
+//   }
+// `
 
 // const UPDATE_TODO_DONE = gql`
 //   mutation UpdateTodo($id: ID!) {
@@ -71,19 +71,19 @@ const GET_TODOS = gql`
 const TodosArea: React.FC<RouteComponentProps> = (props) => {
 
 
-    const [addTodo] = useMutation(ADD_TODO)
+    // const [addTodo] = useMutation(ADD_TODO)
     // const [updateTodoDone] = useMutation(UPDATE_TODO_DONE)
-    let { loading, error, data, refetch } = useQuery(GET_TODOS,{fetchPolicy:"cache-first"})
+    // let { loading, error, data, refetch } = useQuery(GET_TODOS,{fetchPolicy:"cache-first"})
     // const [reminder, setterReminder] = useState<string>("")
     // const [sendLoading, setLoading] = useState(false);
-    const { user, identity } = useContext(IndentityContext)
-    const inputRef = useRef<any>()
+    // const { user, identity } = useContext(IndentityContext)
+    // const inputRef = useRef<any>()
     // const [text, setText] = useState("");
     // const [addTodo] = useMutation(ADDTOO);
     // const [updateTodo] = useMutation(UPDATE_TODO);
     // const [removeTodo] = useMutation(REMOVE_TODO);
     // const { loading, error, data, refetch } = useQuery(GET_TODOS,{fetchPolicy:"cache-first"});
-    // const { user, identity } = useContext(IndentityContext);
+    const { user, identity } = useContext(IndentityContext);
     // const inputRef = useRef<any>();
 
     // React.useEffect(()=>{
@@ -115,15 +115,15 @@ const TodosArea: React.FC<RouteComponentProps> = (props) => {
             </div>
             <hr />
             <div className='mt-5'>
-                <FormControl ref={inputRef} type="text" placeholder='Add Todo...' />
+                {/* <FormControl ref={inputRef} type="text" placeholder='Add Todo...' /> */}
                 {/* <input type="text" value={text} onChange={e => setText(e.target.value)}/> */}
                 <Button className='my-3 w-100' variant='dark'
-                    onClick={async () => {
-                        console.log(inputRef.current.value)
-                        await addTodo({ variables: { value: inputRef.current.value } })
-                        inputRef.current.value = ""
-                        await refetch()
-                      }}
+                    // onClick={async () => {
+                    //     console.log(inputRef.current.value)
+                    //     await addTodo({ variables: { value: inputRef.current.value } })
+                    //     inputRef.current.value = ""
+                    //     await refetch()
+                    //   }}
                 >
                   Add Todo
                 </Button>
@@ -140,7 +140,7 @@ const TodosArea: React.FC<RouteComponentProps> = (props) => {
                     Add Task
                 </Button> */}
             </div>
-            <ListGroup variant="flush">
+            {/* <ListGroup variant="flush">
                 {(loading ) ? <div>Loading...</div> : 
                 error ? <div>Error: {error.message}</div> : 
                 (data.todos.length === 0 ? (
@@ -164,7 +164,7 @@ const TodosArea: React.FC<RouteComponentProps> = (props) => {
                     </ListGroup.Item>
                     ))
                 ))}
-            </ListGroup>
+            </ListGroup> */}
             {/* <ListGroup className='mt-3'>
                 <ListGroup.Item className='mb-2 '>
                     <div className='d-flex'>

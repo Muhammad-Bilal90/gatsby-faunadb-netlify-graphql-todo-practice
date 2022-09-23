@@ -19,9 +19,22 @@ const server = new ApolloServer({
   introspection: true
 });
 
-exports.handler = server.createHandler();
+const serverHandler = server.createHandler({
+cors: {
+  origin: '*'
+  }
+});
 
-
+exports.handler = (event, context, callback) => {
+  return serverHandler(
+    {
+      ...event,
+      requestContext: event.requestContext || {},
+    },
+    context,
+    callback
+  );
+}
 
 // const { ApolloServer, gql } = require("apollo-server-lambda");
 // const faunadb = require("faunadb"),

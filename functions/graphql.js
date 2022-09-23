@@ -2,13 +2,22 @@ const { ApolloServer, gql } = require('apollo-server-lambda');
 
 const typeDefs = gql`
   type Query {
-    hello: String
+    todos: [Todo]!
+  }
+  type Todo {
+    id: ID!
+    text: String!
+    done: Boolean!
   }
 `
 
+const todos = {};
+
 const resolvers = {
   Query: {
-    hello: () => 'Hello World',
+    todos: () => {
+      return Object.values(todos);
+    }
   }
 }
 
@@ -62,7 +71,7 @@ exports.handler = (event, context, callback) => {
 
 // const resolvers = {
 //   Query: {
-//     todos: async (_, args,{user}) => {
+//     todos: async (parent, args) => {
 //       // if (!user){
 //       //   return [];
 //       // }
@@ -151,6 +160,30 @@ exports.handler = (event, context, callback) => {
 // const server = new ApolloServer({
 //   typeDefs,
 //   resolvers,
+//   playground: true,
+//   introspection: true
+// });
+
+// const serverHandler = server.createHandler({
+// cors: {
+//   origin: '*'
+//   }
+// });
+
+// exports.handler = (event, context, callback) => {
+//   return serverHandler(
+//     {
+//       ...event,
+//       requestContext: event.requestContext || {},
+//     },
+//     context,
+//     callback
+//   );
+// }
+
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
 //   // context: ({context})=>{
 //   //   if (context.clientContext.user){
 //   //     return(
@@ -169,7 +202,7 @@ exports.handler = (event, context, callback) => {
 //   introspection: true
 // });
 
-// exports.handler = server.createHandler();
+exports.handler = server.createHandler();
 
 
 // import { ApolloServer, gql } from 'apollo-server-lambda';

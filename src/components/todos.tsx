@@ -5,23 +5,23 @@ import { IndentityContext } from '../context/authContext';
 import { useQuery, useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 
-// const ADDTOO = gql`
-//     mutation AddTodo($value: String!){
-//         addTodo(value: $value){
-//             value
-//         }
-//     }
-// `
+const ADDTOO = gql`
+    mutation AddTodo($value: String!){
+        addTodo(value: $value){
+            value
+        }
+    }
+`
 
-// const GET_TODOS = gql`
-//     query GetTodos {
-//         todos {
-//             id
-//             value
-//             completed
-//         }
-//     }
-// `
+const GET_TODOS = gql`
+    query GetTodos {
+        todos {
+            id
+            value
+            completed
+        }
+    }
+`
 
 // const UPDATE_TODO = gql`
 //     mutation UpdateTodo($id: ID!, $completed: Boolean!){
@@ -79,21 +79,21 @@ const TodosArea: React.FC<RouteComponentProps> = (props) => {
     // const { user, identity } = useContext(IndentityContext)
     // const inputRef = useRef<any>()
     // const [text, setText] = useState("");
-    // const [addTodo] = useMutation(ADDTOO);
+    const [addTodo] = useMutation(ADDTOO);
     // const [updateTodo] = useMutation(UPDATE_TODO);
     // const [removeTodo] = useMutation(REMOVE_TODO);
-    // const { loading, error, data, refetch } = useQuery(GET_TODOS,{fetchPolicy:"cache-first"});
+    const { loading, error, data, refetch } = useQuery(GET_TODOS,{fetchPolicy:"cache-first"});
     const { user, identity } = useContext(IndentityContext);
-    // const inputRef = useRef<any>();
+    const inputRef = useRef<any>();
 
-    // React.useEffect(()=>{
-    //     async function fetchData(){
-    //         await refetch();
-    //     }
+    React.useEffect(()=>{
+        async function fetchData(){
+            await refetch();
+        }
     
-    //     fetchData()
+        fetchData()
     
-    //   },[user]);
+      },[user]);
 
   //   const Submit = () => {
   //     setLoading(true);
@@ -115,15 +115,15 @@ const TodosArea: React.FC<RouteComponentProps> = (props) => {
             </div>
             <hr />
             <div className='mt-5'>
-                {/* <FormControl ref={inputRef} type="text" placeholder='Add Todo...' /> */}
+                <FormControl ref={inputRef} type="text" placeholder='Add Todo...' />
                 {/* <input type="text" value={text} onChange={e => setText(e.target.value)}/> */}
                 <Button className='my-3 w-100' variant='dark'
-                    // onClick={async () => {
-                    //     console.log(inputRef.current.value)
-                    //     await addTodo({ variables: { value: inputRef.current.value } })
-                    //     inputRef.current.value = ""
-                    //     await refetch()
-                    //   }}
+                    onClick={async () => {
+                        console.log(inputRef.current.value)
+                        await addTodo({ variables: { value: inputRef.current.value } })
+                        inputRef.current.value = ""
+                        await refetch()
+                      }}
                 >
                   Add Todo
                 </Button>
